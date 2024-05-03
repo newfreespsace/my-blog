@@ -5,12 +5,9 @@ import Link from 'next/link';
 export default async function TopicsList() {
   const getTopics = async () => {
     try {
-      const res = await fetch(
-        'https://my-blog-eta-lake.vercel.app/api/topics',
-        {
-          cache: 'no-store',
-        }
-      );
+      const res = await fetch(`${process.env.domain}//api/topics`, {
+        cache: 'no-store',
+      });
       if (!res.ok) {
         throw new Error('Failed to fetch topics');
       }

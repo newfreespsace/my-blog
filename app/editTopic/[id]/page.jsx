@@ -1,16 +1,11 @@
 import EditTopicForm from '@/components/EditTopicForm';
-import { useRouter } from 'next/navigation';
 
 const getTopicById = async (id) => {
   try {
-    const router = useRouter();
-    console.log(router.pathname);
-    const res = await fetch(
-      `https://my-blog-eta-lake.vercel.app/api/topics/${id}`,
-      {
-        cache: 'no-store',
-      }
-    );
+    const res = await fetch(`${process.env.domain}/api/topics/${id}`, {
+      cache: 'no-store',
+    });
+    console.log('----', res);
     if (!res.ok) {
       throw new Error('Failed to fetch topic!');
     }
