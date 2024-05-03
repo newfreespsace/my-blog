@@ -18,6 +18,9 @@ export default async function TopicsList() {
     }
   };
 
+  const res = await getTopics();
+  if (!res) return <h1>there is no topic!</h1>;
+
   const { topics } = await getTopics();
 
   return (
