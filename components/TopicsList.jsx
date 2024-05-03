@@ -1,22 +1,47 @@
-import RemoveBtn from "./RemoveBtn";
-import { HiPencilAlt } from "react-icons/hi";
-import Link from "next/link";
+import RemoveBtn from './RemoveBtn';
+import { HiPencilAlt } from 'react-icons/hi';
+import Link from 'next/link';
 
-export default function TopicsList() {
+export default async function TopicsList() {
+  const getTopics = async () => {
+    try {
+      const res = await fetch(
+        'https://my-blog-eta-lake.vercel.app/api/topics',
+        {
+          cache: 'no-store',
+        }
+      );
+      if (!res.ok) {
+        throw new Error('Failed to fetch topics');
+      }
+
+      return res.json();
+    } catch (err) {
+      console.log('Error loading topics: ', err);
+    }
+  };
+
+  const { topics } = await getTopics();
+
   return (
     <>
-    <div className=" p-4 border border-slate-300 my-3 flex  justify-between gap-5 items-start" >
-      <div>
-        <h2 className=" font-bold text-2xl">Topic Title</h2>
-        <div>Topic Description</div>
-      </div>
-      <div className="flex gap-2">
-        <RemoveBtn />
-        <Link href={"/editTopic/123"}>
-          <HiPencilAlt size={24}/>
-        </Link>
-      </div>
-    </div>
+      {topics.map((topic) => (
+        <div
+          key={topic._id}
+          className=" p-4 border border-slate-300 my-3 flex  justify-between gap-5 items-start"
+        >
+          <div>
+            <h2 className=" font-bold text-2xl">{topic.title}</h2>
+            <div>{topic.description}</div>
+          </div>
+          <div className="flex gap-2">
+            <RemoveBtn id={topic._id} />
+            <Link href={`/editTopic/${topic._id}`}>
+              <HiPencilAlt size={24} />
+            </Link>
+          </div>
+        </div>
+      ))}
     </>
-  )
+  );
 }
