@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
+let client = null;
 const connectMongoDB = async () => {
+  if (client) return;
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("connected to MONGODB!");
+    client = await mongoose.connect(process.env.MONGODB_URI);
+    console.log('DB connection successful!');
   } catch (error) {
     console.log(error);
   }

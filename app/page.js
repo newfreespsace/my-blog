@@ -1,10 +1,9 @@
-import TopicsList from "@/components/TopicsList";
-import Image from "next/image";
+import BlogsList from '@/components/BlogsList';
 
 export default function Home() {
   return (
     <>
-      <TopicsList />
+      <BlogsList />
     </>
   );
 }
