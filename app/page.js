@@ -1,6 +1,6 @@
 import BlogsList from '@/components/BlogsList';
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <BlogsList />

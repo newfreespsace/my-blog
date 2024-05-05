@@ -23,3 +23,13 @@ export async function POST(request) {
     }
   );
 }
+
+export async function GET() {
+  console.log('收到请求获取所有blog！');
+  await connectMongoDB();
+  const blogs = await Blog.find();
+  return NextResponse.json({
+    blogs,
+    message: '获取所有 blogs 列表成功！',
+  });
+}
