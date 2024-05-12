@@ -1,3 +1,5 @@
+import 'semantic-ui-css/semantic.min.css';
+
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
@@ -10,7 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        <div className="ui container" style={{ marginTop: '5em' }}>
+          {children}
+        </div>
       </body>
     </html>
   );
