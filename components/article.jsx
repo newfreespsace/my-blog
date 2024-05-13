@@ -1,7 +1,7 @@
 export default function Article() {
   return (
-    <div class="ui text container">
-      <h2 class="ui header">Header</h2>
+    <div className="ui text container">
+      <h2 className="ui header">Header</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et

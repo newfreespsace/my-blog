@@ -12,9 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navbar />
-        <div className="ui container" style={{ marginTop: '5em' }}>
-          {children}
-        </div>
+        <div style={{ marginTop: '5em' }}>{children}</div>
       </body>
     </html>
   );

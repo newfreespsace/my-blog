@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import { HiPencilAlt, HiOutlineTrash } from 'react-icons/hi';
 
 export default async function BlogsList() {
-  console.log('aa');
   const getAllBlogs = async () => {
     const res = await fetch(`${process.env.domain}/api/blogs`, {
       cache: 'no-store',
@@ -11,28 +9,30 @@ export default async function BlogsList() {
   };
 
   const { blogs } = await getAllBlogs();
-  console.log(blogs);
 
   return (
-    <div role="list" class="ui divided relaxed list">
+    <div role="list" className="ui divided relaxed list">
       {blogs.map((blog) => (
-        <>
-          <div role="listitem" class="item">
-            <div class="content">
-              <div class="header">
-                <Link href={`/blog/${blog._id}`}>{blog.title}</Link>
-              </div>
-              <p class="description">
-                Updated at{' '}
-                <span>{`${blog.createdAt
-                  .split('T')[0]
-                  .slice(5, 10)} ${blog.createdAt
-                  .split('T')[1]
-                  .slice(0, 5)}`}</span>{' '}
-              </p>
-            </div>
+        <div className="ui text container" key={blog._id}>
+          <div className="ui positive message" style={{ marginTop: '20px' }}>
+            <Link className="header" href={`/blog/${blog._id}`}>
+              {blog.title}
+            </Link>
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+              commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque
+              penatibus et magnis dis parturient montes, nascetu ........
+            </p>
+            <p className="description">
+              Updated at{' '}
+              <span>{`${blog.createdAt
+                .split('T')[0]
+                .slice(5, 10)} ${blog.createdAt
+                .split('T')[1]
+                .slice(0, 5)}`}</span>{' '}
+            </p>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
